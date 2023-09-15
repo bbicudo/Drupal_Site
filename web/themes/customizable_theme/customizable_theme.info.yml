@@ -1,0 +1,19 @@
+name: 'Customizable Theme'
+type: theme
+base theme: false
+core_version_requirement: ^9 || ^10
+description: 'A fully (or most likely) customizable theme.'
+package: 'bbicudo'
+version: '1.0'
+libraries:
+  - 'customizable_theme/global-styling'
+regions:
+  header: Header
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  page_top: 'Page top'
+  content: 'Content'
+  page_bottom: 'Page bottom'
+dependencies:
+  - 'color_field:color_field'
+  - 'fontyourface:fontyourface'

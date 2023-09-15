@@ -1,0 +1,50 @@
+body {
+  margin: 0px !important;
+}
+
+.branding-container {
+  background-color: var(--branding_background_color, #009cde);
+  display: grid;
+  grid-template-columns: [logo] 0.5fr [title] 4fr [hamburger] 0.5fr;
+  height: 60px;
+  padding: 10px;
+}
+
+.branding-container__site-name {
+  align-self: center;
+  justify-self: center;
+
+  & a {
+    color:var(--branding_font_color, #000);
+    font-size: 2.5vw;
+    text-decoration: none;
+  }
+}
+
+.branding-container__logo-image {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
+
+.branding-container__logo-image a {
+  display: flex;
+}
+.branding-container__logo-image img {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .branding-container {
+    display: grid;
+    grid-template-columns: [logo] 0.5fr [title] 3fr [navigation] 4fr;
+  }
+
+  .branding-container__site-name {
+  
+    & a {
+      font-size: 1.5vw;
+    }
+  }
+}

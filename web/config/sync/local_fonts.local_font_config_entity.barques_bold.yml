@@ -1,0 +1,14 @@
+uuid: 731e6648-cc56-485e-b31c-21ca3bcc4cf7
+langcode: en
+status: true
+dependencies: {  }
+id: barques_bold
+label: 'Barques Bold'
+font_family: Barques
+font_classification:
+  sans-serif: sans-serif
+  serif: '0'
+  slab-serif: '0'
+  handwriting: '0'
+  decorative: '0'
+  monospace: '0'
