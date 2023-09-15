@@ -1,2 +1,2 @@
 # Drupal_Things
-Temas, módulos e afins desenvolvidos para sites Drupal.
+Um site Drupal customizado, com tema/módulos customizados.
