@@ -1,0 +1,12 @@
+uuid: fc8d5d6d-3e66-4915-a6e4-c7e8a3e952f6
+langcode: en
+status: true
+dependencies: {  }
+id: branding_logo
+label: 'Branding Logo'
+font_url: 'local_fonts://barques_bolder_900_'
+fallback: ''
+selectors: '.branding-container__site-name a'
+theme: customizable_theme
+style: null
+weight: null

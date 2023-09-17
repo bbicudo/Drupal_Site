@@ -11,6 +11,7 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor5: 0
+  color_field: 0
   comment: 0
   config: 0
   contact: 0
@@ -45,9 +46,12 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  fontyourface: 1
+  local_fonts: 10
   views: 10
   standard: 1000
 theme:
   olivero: 0
   claro: 0
+  customizable_theme: 0
 profile: standard

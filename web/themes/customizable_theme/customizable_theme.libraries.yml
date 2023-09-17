@@ -1,0 +1,11 @@
+# Commom theme files for all the website.
+global-styling:
+  version: 1.0
+  css:
+    theme:
+      css/global_style.css: {}
+      css/main_menu.css: {}
+      css/settings.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

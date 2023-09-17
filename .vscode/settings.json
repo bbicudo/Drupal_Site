@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+      "**/*.*": false
+  },
+  "cSpell.words": [
+    "preprocess",
+    "renderable"
+  ]
+}

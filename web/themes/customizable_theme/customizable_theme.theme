@@ -1,0 +1,119 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function customizable_theme_preprocess_page(array &$variables) {
+  $branding_background_color = theme_get_setting('branding_background_color') ?? '#009CDE';
+  $hamburger_background_color = theme_get_setting('hamburger_background_color') ?? '#000000';
+
+  // Initializes css variables.
+  $variables['#attached']['html_head'][] = [
+    [
+      '#tag' => 'style',
+      '#value' => ':root { 
+        --branding_background_color: ' . $branding_background_color . ';
+        --hamburger_background_color: ' . $hamburger_background_color . ';
+      }',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function customizable_theme_preprocess_block__customizable_theme_site_branding(&$variables) {
+
+  $menu_name = [
+    'main' => FALSE,
+    'account' => TRUE,
+  ];
+
+  _render_menu($menu_name, $variables);
+}
+
+/**
+ * Creates a renderable menu from the provided menu names.
+ *
+ * @param array $menu_name
+ *   The menu names to be loaded.
+ * @param array $variables
+ *   The variables array.
+ * @return void
+ */
+function _render_menu(array $menu_name, array &$variables) {
+  $menu_items = [];
+
+  // Checks if authentication is needed for menu rendering.
+  foreach ($menu_name as $name => $needs_permission) {
+    if ($needs_permission && !(\Drupal::currentUser()->isAuthenticated())) {
+      continue;
+    }
+  
+    // Get the menu tree.
+    $menu_tree = \Drupal::menuTree()->load($name, new \Drupal\Core\Menu\MenuTreeParameters());
+
+    // Build the menu link tree.
+    $menu_link_tree = \Drupal::menuTree()->build($menu_tree);
+
+    // Extract items from all the supplied menus.
+    $menu_items = array_merge($menu_items, $menu_link_tree['#items']);
+  }
+
+  // Creates a renderable menu with all the menu items from the provided menu
+  // names, in order to keep all of them inside the same <ul> structure.
+  $renderable_menu = [
+    "#cache" => [
+      "contexts" => [
+        "user.roles:authenticated"
+      ],
+      "tags" => [
+        "config:system.menu.main",
+        "config:system.menu.account"
+      ],
+      "max-age" => -1,
+    ],
+    "#sorted" => true,
+    "#theme" => "menu__account",
+    "#menu_name" => "account",
+    "#items" =>$menu_items,
+  ];
+
+    // Add it to the block's content.
+    $variables['content']['main_menu'] = $renderable_menu;
+    $variables['content']['main_menu']['#attributes']['class'][] = 'branding-container__main-menu--menu-items';
+} 
+
+/**
+ * Implements hook_form_FORM_ID_alter() for system_theme_settings.
+ */
+function customizable_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  $form['customizable_theme_settings'] = [
+    '#type' => 'details',
+    '#title' => t('Customizable Theme Settings'),
+  ];
+
+  $form['customizable_theme_settings']['branding_customization'] = [
+    '#type' => 'details',
+    '#title' => t('Branding Settings'),
+  ];
+
+  $form['customizable_theme_settings']['branding_customization']['branding_background_color'] = [
+    '#type' => 'color',
+    '#title' => t('Branding Background Color'),
+    '#default_value' => theme_get_setting('branding_background_color'),
+  ];
+
+  $form['customizable_theme_settings']['branding_customization']['hamburger_background_color'] = [
+    '#type' => 'color',
+    '#title' => t('Hamburger Menu Background Color (for menu items)'),
+    '#default_value' => theme_get_setting('hamburger_background_color'),
+  ];
+}

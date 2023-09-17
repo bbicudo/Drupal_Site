@@ -1,0 +1,12 @@
+uuid: 9444e20d-18af-46fe-b53c-01db552e286c
+langcode: en
+status: true
+dependencies: {  }
+id: site_branding
+label: 'Site Branding'
+font_url: 'local_fonts://barques_bold'
+fallback: ''
+selectors: '.menu > li a'
+theme: customizable_theme
+style: null
+weight: null

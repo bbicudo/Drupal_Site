@@ -1,0 +1,13 @@
+features:
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+logo:
+  use_default: 0
+  path: 'public://Novo Projeto (2).png'
+favicon:
+  use_default: 1
+branding_background_color: '#c3b2aa'
+branding_secondary_color: '#f0e1da'
+hamburger_background_color: '#af877f'

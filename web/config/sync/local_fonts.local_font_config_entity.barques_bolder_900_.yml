@@ -1,0 +1,14 @@
+uuid: 718528c9-586b-400a-94ba-3074e9460e74
+langcode: en
+status: true
+dependencies: {  }
+id: barques_bolder_900_
+label: 'Barques Bolder (900)'
+font_family: Barques
+font_classification:
+  sans-serif: sans-serif
+  serif: '0'
+  slab-serif: '0'
+  handwriting: '0'
+  decorative: '0'
+  monospace: '0'
